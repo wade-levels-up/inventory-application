@@ -4,13 +4,15 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const path = require('node:path');
 
+app.use(express.static(path.join(__dirname, 'public')));
 app.set("view engine", "ejs");
-app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 
 const indexRouter = require('./routes/indexRouter');
+const categoryRouter = require('./routes/categoryRouter');
 
 app.use('/', indexRouter);
+app.use('/category', categoryRouter);
 
 app.use((err, req, res, next) => {
     console.error(err);
