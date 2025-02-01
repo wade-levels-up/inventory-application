@@ -13,9 +13,12 @@
     <ul>
         <% models.forEach((model) => { %>
             <li>
-                <div>
+                <div class="carCard">
                     <h4><%= model.make_name %> <%= model.model_name %></h4>
                     <img src="<%= model.imgurl %>" alt="<%= model.make_name %> <%= model.model_name %>" width="280px">
+                    <span>Price: $<%= model.price %></span>
+                    <p><%= model.year %> model <%= model.make_name %> <%= model.model_name %> with <%= model.odometer %> <abbr title="kilometres">kms</abbr> on the odometer</p>
+                    <details><%= model.description %></details>
                 </div>
             </li>
         <% }); %>

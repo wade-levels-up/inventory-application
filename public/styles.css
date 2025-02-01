@@ -9,9 +9,36 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    list-style: none;
 }
 
 body {
     background-color: var(--background-color);
     color: var(--text-color);
+}
+
+ul {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.carCard {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+    min-height: fit-content;
+    padding: 1rem;
+    max-width: 300px;
+    border: 1px solid var(--text-color);
+}
+
+.carCard h4 {
+    text-align: center;
+}
+
+details {
+    text-wrap: pretty;
+    hyphens: auto;
 }
