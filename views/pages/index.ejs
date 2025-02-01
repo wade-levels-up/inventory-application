@@ -8,11 +8,13 @@
 </head>
 <body>
     <h1><%= title %></h1>
-    <h2>Manufacturers</h2>
+    <h2>Viewing Stock by Manufacturer</h2>
+    <h3>Click to browse our...</h3>
     <ul>
         <% manufacturers.forEach((make) => { %>
-            <li><a href="/<%= make.name %>"><%= make.name %></a></li>
+            <li><%= make.name %>'s</a></li>
         <% }); %>
+        <li><a href="/all">All makes</a></li>
     </ul>
 </body>
 </html>
