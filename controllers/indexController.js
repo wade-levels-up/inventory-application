@@ -1,9 +1,13 @@
-// db stuff
-
+const db = require('../db/queries');
 const asyncHandler = require('express-async-handler');
 
-const getAllData = asyncHandler(async (req, res) => {
-    res.render('pages/index', { title: 'Homepage'});
+const getAllManufacturersData = asyncHandler(async (req, res) => {
+    try {
+        const allManufacturers = await db.getAllManufacturers(); 
+        res.render('pages/index', { title: 'Homepage', manufacturers: allManufacturers});
+    } catch(error) {
+        throw new Error(`Couldn't retrieve manufacturer data. Error: ${error}`)
+    }
 })
 
-module.exports = { getAllData }
+module.exports = { getAllManufacturersData }
