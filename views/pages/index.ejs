@@ -12,7 +12,9 @@
     <h3>Click to browse our...</h3>
     <ul>
         <% manufacturers.forEach((make) => { %>
-            <li><%= make.name %>'s</a></li>
+            <li>
+                <a href="/category/<%= make.name.toLowerCase() %>"><%= make.name %>'s</a>
+            </li>
         <% }); %>
         <li><a href="/category/all">All makes</a></li>
     </ul>

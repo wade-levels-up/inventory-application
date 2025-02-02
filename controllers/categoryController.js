@@ -10,4 +10,13 @@ const getAllModels = asyncHandler(async (req, res) => {
     }
 })
 
-module.exports = { getAllModels }
+const getModelsByManufacturer = asyncHandler(async (req, res) => {
+    try {
+        const models = await db.getModelsByManufacturer(req.params.manufacturer);
+        res.render("pages/category", { title: req.params.manufacturer, models: models});
+    } catch(error) {
+        throw new Error(`Couldn't retrieve models data. Error: ${error}`)
+    }
+})
+
+module.exports = { getAllModels, getModelsByManufacturer }

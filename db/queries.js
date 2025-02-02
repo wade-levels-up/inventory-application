@@ -14,5 +14,15 @@ async function getAllModels() {
     return rows;
 }
 
-module.exports = { getAllManufacturers, getAllModels };
+async function getModelsByManufacturer(manufacturer) {
+    const { rows } = await pool.query(`
+            SELECT models.name AS model_name, manufacturers.name AS make_name, year, price, imgUrl, odometer, description
+            FROM models
+            JOIN manufacturers ON models.makeKey = manufacturers.id
+            WHERE manufacturers.name ILIKE ($1)
+        `, [manufacturer]);
+    return rows;
+}
+
+module.exports = { getAllManufacturers, getAllModels, getModelsByManufacturer};
 
