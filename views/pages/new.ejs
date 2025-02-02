@@ -8,6 +8,13 @@
 </head>
 <body>
     <h1><%= title %></h1>
+    <% if (locals.errors) { %>
+        <ul>
+            <% errors.forEach((error) => { %>
+                <li><%= error.msg %></li>
+              <% }) %>
+        </ul>
+    <% } %>
     <% if (title === 'New Manufacturer') { %>
         <%- include('../partials/newManufacturerForm') %>
     <% } %>
