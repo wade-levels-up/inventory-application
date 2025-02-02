@@ -1,0 +1,39 @@
+<form action="/new/model" method="POST">
+    <ul class="newModelFormUL">
+        <li>
+            <label for="makeKey">Manufacturer: </label>
+            <select name="makeKey" id="makeKey">
+                <% locals.manufacturers.forEach((manufacturer) => { %>
+                    <option value="<%= manufacturer.id %>"><%= manufacturer.name %></option>
+                <% }) %>
+            </select>
+        </li>
+        <li>
+            <label for="name">Name: </label>
+            <input type="text" name="name" id="name" required>
+        </li>
+        <li>
+            <label for="year">Year: </label>
+            <input type="number" name="year" id="year" required min="1800" max="9999">
+        </li>
+        <li>
+            <label for="price">Price: </label>
+            <input type="number" name="price" id="price" required min="1" max="9999999">
+        </li>
+        <li>
+            <label for="imgUrl">Image URL: </label>
+            <input type="text" name="imgUrl" id="imgUrl">
+        </li>
+        <li>
+            <label for="odometer">Odometer: </label>
+            <input type="number" name="odometer" id="odometer" required min="1" max="999999">
+        </li>
+        <li>
+            <label for="description">Description: </label>
+            <textarea id="description" name="description" rows="5" cols="33"></textarea>
+        </li>
+        <li>
+            <button type="submit">Submit</button>
+        </li>
+    </ul>
+</form>

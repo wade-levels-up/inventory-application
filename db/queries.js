@@ -31,5 +31,13 @@ async function createNewManufacturer(manufacturer) {
         `, [manufacturer]);
 }
 
-module.exports = { getAllManufacturers, getAllModels, getModelsByManufacturer, createNewManufacturer};
+async function createNewModel(model) {
+    const { name, year, price, imgUrl, odometer, description, makeKey } = model;
+    await pool.query(`
+        INSERT INTO models (name, year, price, imgUrl, odometer, description, makeKey)
+        VALUES ($1, $2, $3, $4, $5, $6, $7)
+        `, [name, year, price, imgUrl, odometer, description, makeKey]);
+}
+
+module.exports = { getAllManufacturers, getAllModels, getModelsByManufacturer, createNewManufacturer, createNewModel };
 

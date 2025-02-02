@@ -32,4 +32,22 @@ const getNewManufacturerForm = asyncHandler(async (req, res) => {
     }
 })
 
-module.exports = { createNewManufacturer, getNewManufacturerForm }
+const getNewModelForm = asyncHandler(async (req, res) => {
+    try {
+        const allManufacturers = await db.getAllManufacturers();
+        res.render("pages/new", { title: 'New Model', manufacturers: allManufacturers}); 
+    } catch(error) {
+        throw new Error(`Unable to retrieve new model form - ${error}`)
+    }
+});
+
+const createNewModel = asyncHandler(async (req, res) => {
+        try {
+            await db.createNewModel(req.body);
+            res.redirect('/')
+        } catch(error) {
+            throw new Error(`Unable to create new model - ${error}`);
+        }
+});
+
+module.exports = { createNewManufacturer, getNewManufacturerForm, getNewModelForm, createNewModel }
