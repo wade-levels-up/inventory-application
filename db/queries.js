@@ -24,5 +24,12 @@ async function getModelsByManufacturer(manufacturer) {
     return rows;
 }
 
-module.exports = { getAllManufacturers, getAllModels, getModelsByManufacturer};
+async function createNewManufacturer(manufacturer) {
+    await pool.query(`
+            INSERT INTO manufacturers (name)
+            VALUES ($1)
+        `, [manufacturer]);
+}
+
+module.exports = { getAllManufacturers, getAllModels, getModelsByManufacturer, createNewManufacturer};
 

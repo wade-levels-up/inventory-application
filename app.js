@@ -10,9 +10,11 @@ app.use(express.urlencoded({ extended: true }));
 
 const indexRouter = require('./routes/indexRouter');
 const categoryRouter = require('./routes/categoryRouter');
+const newRouter = require('./routes/newRouter');
 
 app.use('/', indexRouter);
 app.use('/category', categoryRouter);
+app.use('/new', newRouter);
 
 app.use((err, req, res, next) => {
     console.error(err);
