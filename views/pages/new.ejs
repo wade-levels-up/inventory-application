@@ -9,9 +9,9 @@
 <body>
     <h1><%= title %></h1>
     <% if (locals.errors) { %>
-        <ul>
+        <ul class="errorList">
             <% errors.forEach((error) => { %>
-                <li>Error: <%= error.msg %></li>
+                <li class="error"><strong>Error:</strong> <%= error.msg %></li>
               <% }) %>
         </ul>
     <% } %>

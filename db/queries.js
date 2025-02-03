@@ -5,6 +5,11 @@ async function getAllManufacturers() {
     return rows;
 }
 
+async function getManufacturerById(id) {
+    const { rows } = await pool.query("SELECT id FROM manufacturers WHERE id = $1", [id]);
+    return rows;
+}
+
 async function getAllModels() {
     const { rows } = await pool.query(`
             SELECT models.name AS model_name, manufacturers.name AS make_name, year, price, imgUrl, odometer, description
@@ -39,5 +44,5 @@ async function createNewModel(model) {
         `, [name, year, price, imgUrl, odometer, description, makeKey]);
 }
 
-module.exports = { getAllManufacturers, getAllModels, getModelsByManufacturer, createNewManufacturer, createNewModel };
+module.exports = { getAllManufacturers, getManufacturerById, getAllModels, getModelsByManufacturer, createNewManufacturer, createNewModel };
 

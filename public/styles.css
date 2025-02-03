@@ -49,3 +49,12 @@ details {
     padding: 1rem;
     gap: 1rem;
 }
+
+.errorList {
+    display: flex;
+    flex-direction: column;
+    list-style: circle;
+    color: red;
+    padding: 1rem;
+    gap: 0.5rem;
+}
