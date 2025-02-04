@@ -2,6 +2,7 @@ const { Router } = require('express');
 const deleteRouter = Router();
 const deleteController = require('../controllers/deleteController')
 
-deleteRouter.post('/', deleteController.deleteModelById)
+deleteRouter.post('/model', deleteController.deleteModelById)
+deleteRouter.post('/manufacturer', deleteController.deleteManufacturerByName)
 
 module.exports = deleteRouter;

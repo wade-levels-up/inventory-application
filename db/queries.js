@@ -48,5 +48,13 @@ async function deleteModelById(id) {
     await pool.query(`DELETE FROM models WHERE id = ($1)`, [id])
 }
 
-module.exports = { getAllManufacturers, getManufacturerById, getAllModels, getModelsByManufacturer, createNewManufacturer, createNewModel, deleteModelById };
+async function deleteManufacturerByName(manufacturer) {
+    await pool.query(`
+        DELETE FROM models
+        WHERE makeKey IN (SELECT id FROM manufacturers WHERE name ILIKE $1)
+    `, [manufacturer]);
+    await pool.query(`DELETE FROM manufacturers WHERE name ILIKE $1`, [manufacturer])
+}
+
+module.exports = { getAllManufacturers, getManufacturerById, getAllModels, getModelsByManufacturer, createNewManufacturer, createNewModel, deleteModelById, deleteManufacturerByName };
 

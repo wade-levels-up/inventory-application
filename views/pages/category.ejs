@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= title %></title>
     <link rel="stylesheet" href="/styles.css">
+    <script></script>
 </head>
 <body>
     <h1><%= title %></h1>
@@ -16,7 +17,7 @@
                 <div class="carCard">
                     <div>
                         <span><%= model.make_name %> <%= model.model_name %></span>
-                        <form action="/delete?manufacturer=<%= title %>&id=<%= model.id %>" method="post">
+                        <form action="/delete/model?manufacturer=<%= title %>&id=<%= model.id %>" method="post">
                             <button type="submit">Delete</button>
                         </form>
                     </div>
@@ -29,5 +30,10 @@
         <% }); %>
     </ul>
     <a href="/">Return Home</a>
+    <% if (title !== 'All models') { %>
+        <form action="/delete/manufacturer?manufacturer=<%= title %>" method="post">
+            <button type="submit" onclick="return confirm('Are you sure? Deleting the manufacturer will also delete all cars made by that manufacturer. Press OK to proceed or Cancel to abort.')">Delete Manufacturer</button>
+        </form>
+    <% } %>
 </body>
 </html>
