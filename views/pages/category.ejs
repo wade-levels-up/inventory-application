@@ -14,7 +14,12 @@
         <% models.forEach((model) => { %>
             <li>
                 <div class="carCard">
-                    <span><%= model.make_name %> <%= model.model_name %></span>
+                    <div>
+                        <span><%= model.make_name %> <%= model.model_name %></span>
+                        <form action="/delete?manufacturer=<%= title %>&id=<%= model.id %>" method="post">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </div>
                     <img src="<%= model.imgurl %>" alt="<%= model.make_name %> <%= model.model_name %>" width="280px">
                     <span>Price: $<%= model.price %></span>
                     <p><%= model.year %> model <%= model.make_name %> <%= model.model_name %> with <%= model.odometer %> <abbr title="kilometres">kms</abbr> on the odometer</p>

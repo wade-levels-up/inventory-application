@@ -12,7 +12,7 @@ async function getManufacturerById(id) {
 
 async function getAllModels() {
     const { rows } = await pool.query(`
-            SELECT models.name AS model_name, manufacturers.name AS make_name, year, price, imgUrl, odometer, description
+            SELECT models.id, models.name AS model_name, manufacturers.name AS make_name, year, price, imgUrl, odometer, description
             FROM models
             JOIN manufacturers ON models.makeKey = manufacturers.id
         `);
@@ -21,7 +21,7 @@ async function getAllModels() {
 
 async function getModelsByManufacturer(manufacturer) {
     const { rows } = await pool.query(`
-            SELECT models.name AS model_name, manufacturers.name AS make_name, year, price, imgUrl, odometer, description
+            SELECT models.id, models.name AS model_name, manufacturers.name AS make_name, year, price, imgUrl, odometer, description
             FROM models
             JOIN manufacturers ON models.makeKey = manufacturers.id
             WHERE manufacturers.name ILIKE ($1)
@@ -44,5 +44,9 @@ async function createNewModel(model) {
         `, [name, year, price, imgUrl, odometer, description, makeKey]);
 }
 
-module.exports = { getAllManufacturers, getManufacturerById, getAllModels, getModelsByManufacturer, createNewManufacturer, createNewModel };
+async function deleteModelById(id) {
+    await pool.query(`DELETE FROM models WHERE id = ($1)`, [id])
+}
+
+module.exports = { getAllManufacturers, getManufacturerById, getAllModels, getModelsByManufacturer, createNewManufacturer, createNewModel, deleteModelById };
 
