@@ -11,10 +11,17 @@ const getUpdateModel = asyncHandler(async (req, res) => {
     } 
 })
 
+const getUpdateManufacturer = asyncHandler(async (req, res) => {
+    try {
+        const manufacturerName = req.query.name;
+        res.render('pages/update', { title: 'Update Manufacturer', manufacturer: manufacturerName });
+    } catch(error) {
+        throw new Error(`Failed to update model: ${error}`);
+    } 
+})
+
 const updateModelById = asyncHandler(async (req, res) => {
     try {
-        console.log('Inside updateController')
-        console.log(req.query.id, req.body.name)
         await db.updateModelById(req.query.id, req.body)
         res.redirect('/');
     } catch(error) {
@@ -24,10 +31,11 @@ const updateModelById = asyncHandler(async (req, res) => {
 
 const updateManufacturerByName = asyncHandler(async (req, res) => {
     try {
-
+        await db.updateManufacturerByName(req.query.name, req.body.name)
+        res.redirect('/');
     } catch(error) {
-        throw new Error(`Failed to update model: ${error}`);
+        throw new Error(`Failed to update manufacturer: ${error}`);
     }
 })
 
-module.exports = { getUpdateModel, updateModelById, updateManufacturerByName }
+module.exports = { getUpdateModel, updateModelById, updateManufacturerByName, getUpdateManufacturer }
