@@ -44,6 +44,20 @@ async function createNewModel(model) {
         `, [name, year, price, imgUrl, odometer, description, makeKey]);
 }
 
+async function getModelById(id) {
+    const { rows } = await pool.query(`SELECT * FROM models WHERE id = ($1)`, [id])
+    return rows
+}
+
+async function updateModelById(id, model) {
+    const { name, year, price, imgUrl, odometer, description, makeKey } = model;
+    await pool.query(`
+        UPDATE models
+        SET name = $1, year = $2, price = $3, imgUrl = $4, odometer = $5, description = $6, makeKey = $7
+        WHERE id = $8
+        `, [name, year, price, imgUrl, odometer, description, makeKey, id])
+}
+
 async function deleteModelById(id) {
     await pool.query(`DELETE FROM models WHERE id = ($1)`, [id])
 }
@@ -56,5 +70,5 @@ async function deleteManufacturerByName(manufacturer) {
     await pool.query(`DELETE FROM manufacturers WHERE name ILIKE $1`, [manufacturer])
 }
 
-module.exports = { getAllManufacturers, getManufacturerById, getAllModels, getModelsByManufacturer, createNewManufacturer, createNewModel, deleteModelById, deleteManufacturerByName };
+module.exports = { getAllManufacturers, getManufacturerById, getAllModels, getModelById, updateModelById, getModelsByManufacturer, createNewManufacturer, createNewModel, deleteModelById, deleteManufacturerByName };
 

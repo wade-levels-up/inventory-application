@@ -12,11 +12,13 @@ const indexRouter = require('./routes/indexRouter');
 const categoryRouter = require('./routes/categoryRouter');
 const newRouter = require('./routes/newRouter');
 const deleteRouter = require('./routes/deleteRouter');
+const updateRouter = require('./routes/updateRouter');
 
 app.use('/', indexRouter);
 app.use('/category', categoryRouter);
 app.use('/new', newRouter);
 app.use('/delete', deleteRouter);
+app.use('/update', updateRouter);
 
 app.use((err, req, res, next) => {
     console.error(err);

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <h1><%= title %></h1>
+    <% if (locals.errors) { %>
+        <ul class="errorList">
+            <% errors.forEach((error) => { %>
+                <li class="error"><strong>Error:</strong> <%= error.msg %></li>
+              <% }) %>
+        </ul>
+    <% } %>
+    <% if (title === 'Update Manufacturer') { %>
+        <%- include('../partials/updateManufacturerForm') %>
+    <% } %>
+    <% if (title === 'Update Model') { %>
+        <%- include('../partials/updateModelForm') %>
+    <% } %>
+    <a href="/">Return Home</a>
+</body>
+</html>
