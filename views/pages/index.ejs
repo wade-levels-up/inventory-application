@@ -1,24 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title %></title>
-    <link rel="stylesheet" href="/styles.css">
-</head>
+<%- include('../partials/head') %>
 <body>
-    <h1><%= title %></h1>
-    <h2>Viewing Stock by Manufacturer</h2>
-    <h3>Click to browse our...</h3>
-    <ul>
-        <% manufacturers.forEach((make) => { %>
-            <li>
-                <a href="/category/<%= make.name.toLowerCase() %>"><%= make.name %>'s</a>
-            </li>
-        <% }); %>
-        <li><a href="/category/all">All makes</a></li>
-    </ul>
-    <a href="/new/manufacturer">Add New Manufacturer</a>
-    <a href="/new/model">Add New Model</a>
+    <header class="flex-row-centred-50pxh">
+        <button class="greyButton"><i class="fa-solid fa-bars fa-2xl"></i></button><h1>autosales</h1>
+    </header>
+    <section>
+        <div class="banner-image"></div>
+    </section>
+    <main>
+        <h2>Find your next car</h2>
+        <nav>
+            <a class="buttonLink" href="/category/all"><button>View All Models</button></a>
+        </nav>
+        <h3>Browse By Make</h3>
+        <nav>
+            <ul>
+                <% manufacturers.forEach((make) => { %>
+                    <li>
+                        <a class="buttonLink" href="/category/<%= make.name.toLowerCase() %>"><button><%= make.name %></button></a>
+                    </li>
+                <% }); %>
+            </ul>
+            <div class="flex-row-centred-50pxh">
+                <a class="buttonLink half-width" href="/new/manufacturer"><button>Add New Make</button></a>
+                <a class="buttonLink half-width" href="/new/model"><button>Sell My Car</button></a>
+            </div>
+        </nav>
+    </main>
+    <%- include('../partials/footer') %>
 </body>
 </html>
