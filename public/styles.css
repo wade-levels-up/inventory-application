@@ -215,7 +215,7 @@ footer {
 .carsGrid {
     width: 100vw;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr) );
+    grid-template-columns: repeat(auto-fit, minmax(275px, 1fr) );
     grid-template-rows: auto;
     padding: var(--padding-16px);
     gap: var(--padding-16px);
@@ -274,6 +274,10 @@ footer {
     border-bottom: 1px solid var(--button-hover-color-1);
 }
 
+.carCard-image-container img {
+    cursor: pointer;
+}
+
 .carCard img {
     width: 100%;
 }
@@ -316,7 +320,6 @@ details {
     width: 90%;
     display: flex;
     justify-content: flex-end;
-    cursor: pointer; /* Optional: change cursor to pointer to indicate it's clickable */
 }
 
 #detail-modal p {

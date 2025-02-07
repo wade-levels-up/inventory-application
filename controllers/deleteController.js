@@ -1,11 +1,19 @@
+require('dotenv').config();
 const db = require('../db/queries');
 const asyncHandler = require('express-async-handler');
+
+const adminpw = process.env.ADMINPW
 
 const deleteModelById = asyncHandler(async (req, res) => {
     try {
         await db.deleteModelById(req.query.id);
-        const models = await db.getModelsByManufacturer(req.query.manufacturer);
-        res.render("pages/category", { title: req.query.manufacturer, models: models});
+        let models;
+        if (req.query.manufacturer === "All models") {
+            models = await db.getAllModels();
+        } else {
+            models = await db.getModelsByManufacturer(req.query.manufacturer);
+        }
+        res.render("pages/category", { title: req.query.manufacturer, models: models, adminpw});
     } catch(error) {
         throw new Error(`Couldn't delete model from database. Error: ${error}`)
     }

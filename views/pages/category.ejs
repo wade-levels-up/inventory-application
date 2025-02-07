@@ -26,8 +26,8 @@
                             <div><i class="fa-solid fa-dollar-sign" title="Price"></i> <%= model.price %></div>
                             <div><i class="fa-solid fa-gauge" title="Kilometres on odometer"></i> <%= model.odometer %> <abbr title="kilometres">kms</abbr></div>
                         </span>
-                        <details><%= model.description %></details>
                         <div class="carCard-menu">
+                            <button class="buttonLink" onclick="displayModalWithImage('<%= model.imgurl %>')">Details</button>
                             <form action="/delete/model?manufacturer=<%= title %>&id=<%= model.id %>" method="post">
                                 <button class="buttonLink" type="submit" onclick="return checkPassword()">Delete</button>
                             </form>
@@ -49,7 +49,7 @@
     <% } %>
     <%- include('../partials/footer') %>
     <script>
-        const adminpw = '<%= adminpw %>';
+        const adminpw = "<%= adminpw %>";
 
         const closeModalBtn = document.querySelector("#closeModalBtn");
         const modal = document.querySelector("#detail-modal");
@@ -79,6 +79,7 @@
             } else if (enteredPassword === adminpw) {
                 return true;
             } else {
+                alert('Incorrect password. Access denied.')
                 return false;
             }
         }
