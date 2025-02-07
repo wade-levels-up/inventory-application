@@ -4,12 +4,16 @@ require('dotenv').config()
 const { Client } = require("pg");
 
 const SQL = `
-CREATE TABLE IF NOT EXISTS manufacturers (
+DROP TABLE models;
+
+DROP TABLE manufacturers;
+
+CREATE TABLE manufacturers (
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     name VARCHAR ( 255 )
 );
 
-CREATE TABLE IF NOT EXISTS models (
+CREATE TABLE models (
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     name VARCHAR ( 255 ),
     year INTEGER,

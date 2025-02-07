@@ -3,11 +3,18 @@
 <%- include('../partials/head') %>
 <body>
     <header class="flex-row-centred-50pxh">
-        <button class="greyButton"><i class="fa-solid fa-bars fa-2xl"></i></button><h1>autosales</h1>
+        <button id="openMenuBtn" class="greyButton"><i class="fa-solid fa-bars fa-2xl"></i></button><h1>autosales</h1>
     </header>
     <section>
         <div class="banner-image"></div>
     </section>
+    <nav class="menu" style="display: none">
+        <span><button id="closeMenuBtn"><i class="fa-solid fa-xmark" title="Close side menu"></i></button></span>
+        <ul>
+            <a class="buttonLink" href="/new/manufacturer"><button>Add New Make</button></a>
+            <a class="buttonLink" href="/new/model"><button>Sell My Car</button></a>
+        </ul>
+    </nav>
     <main>
         <h2>Find your next car</h2>
         <nav>
@@ -22,12 +29,21 @@
                     </li>
                 <% }); %>
             </ul>
-            <div class="flex-row-centred-50pxh">
-                <a class="buttonLink half-width" href="/new/manufacturer"><button>Add New Make</button></a>
-                <a class="buttonLink half-width" href="/new/model"><button>Sell My Car</button></a>
-            </div>
         </nav>
     </main>
     <%- include('../partials/footer') %>
+    <script>
+        const openMenuBtn = document.querySelector("#openMenuBtn");
+        const closeMenuButton = document.querySelector("#closeMenuBtn");
+        const menu = document.querySelector(".menu");
+
+        closeMenuButton.addEventListener('pointerdown', () => {
+            menu.style.display = "none";
+        });
+
+        openMenuBtn.addEventListener('pointerdown', () => {
+            menu.style.display = "flex";
+        });
+    </script>
 </body>
 </html>
