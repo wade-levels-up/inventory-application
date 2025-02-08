@@ -28,12 +28,12 @@
             <label for="odometer">Odometer: </label>
             <input type="number" name="odometer" id="odometer" value="<%= locals.model.odometer %>" required min="1" max="999999">
         </li>
-        <li>
+        <li class="textarea-li">
             <label for="description">Description: </label>
             <textarea id="description" name="description" rows="5" cols="33"><%= locals.model.description %>"</textarea>
         </li>
         <li>
-            <button type="submit">Submit</button>
+            <button class="buttonLink" type="submit">Submit</button>
         </li>
     </ul>
 </form>

@@ -17,6 +17,8 @@
     --border-radius-8px: 8px;
 }
 
+/* Base element styles */
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -41,34 +43,19 @@ h2, h3 {
 
 button {
     cursor: pointer;
+    font-size: 16px;
+    outline: none;
 }
+
 
 a:hover, a:focus {
     text-decoration: underline;
 }
 
-form ul {
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
-    gap: 1rem;
-}
-
-form ul input, select {
-    width: 100px;
-}
-
-form ul li {
-    display: flex;
-    justify-content: space-between;
-}
-
-
-
 body {
     min-width: 300px;
     width: 100vw;
-    height: 100%;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -111,11 +98,6 @@ body {
     border-radius: 50%;
 }
 
-.menu span button:hover, button:focus {
-    cursor: pointer;
-    background-color: var(--button-hover-color-1);
-    outline: 2px inset var(--text-color-main);
-}
 
 .flex-row-centred-50pxh {
     width: 100%;
@@ -127,6 +109,8 @@ body {
     gap: 1rem;
     position: relative;
     padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 3px solid var(--button-hover-color-1);
 }
 
 .greyButton {
@@ -156,11 +140,14 @@ nav button {
     display: flex;
     justify-content: center;
     align-items: center;
+    color: var(--text-color-secondary);
     width: 100%;
+    max-width: 600px;
     height: 2rem;
     text-align: center;
     border-radius: var(--border-radius-8px);
     background-color: var(--button-color-1);
+    border: none;
 }
 
 .half-width {
@@ -169,13 +156,14 @@ nav button {
 
 .banner-image {
     width: 100vw;
-    height: 150px;
+    height: 200px;
     background: center / cover no-repeat url("tabea-schimpf-O7WzqmeYoqc-unsplash.jpg");
+    border-bottom: 3px solid var(--button-hover-color-1);
 }
 
 main {
     width: 100vw;
-    max-width: 800px;
+    max-width: 600px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -219,6 +207,7 @@ footer {
     grid-template-rows: auto;
     padding: var(--padding-16px);
     gap: var(--padding-16px);
+    max-width: 1000px;
 }
 
 .carCard {
@@ -287,15 +276,6 @@ details {
     text-wrap: pretty;
 }
 
-.errorList {
-    display: flex;
-    flex-direction: column;
-    list-style: circle;
-    color: red;
-    padding: 1rem;
-    gap: 0.5rem;
-}
-
 #detail-modal {
     display: none;
     position: fixed;
@@ -310,19 +290,78 @@ details {
     justify-content: center;
     align-items: center;
     overflow-y: auto;
+    cursor: no-drop;
 }
 
 #modal-image {
     width: 90%;
+    max-width: 1200px;
 }
 
 #detail-modal span {
     width: 90%;
     display: flex;
     justify-content: flex-end;
+    max-width: 1200px;
 }
 
 #detail-modal p {
     font-size: 16px;
     width: 90%;
+    max-width: 1200px;
 }
+
+/* Related to forms */
+
+form {
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.errorList {
+    display: flex;
+    flex-direction: column;
+    color: red;
+    padding: 1rem;
+    gap: 0.5rem;
+}
+
+form ul {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+label {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+}
+
+form ul input, select {
+    width: 50%;
+    max-width: 200px;
+}
+
+.textarea-li {
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+}
+
+form ul li {
+    display: flex;
+    justify-content: space-between;
+}
+
+input, textarea, select {
+    padding: var(--border-radius-8px);
+    font-size: 16px;
+    border-radius: var(--border-radius-8px);
+    border: 2px ridge var(--button-hover-color-1);
+}
+

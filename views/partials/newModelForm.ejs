@@ -1,7 +1,7 @@
 <form action="/new/model" method="POST">
     <ul>
         <li>
-            <label for="makeKey">Manufacturer: </label>
+            <label for="makeKey">Make: </label>
             <select name="makeKey" id="makeKey">
                 <% locals.manufacturers.forEach((manufacturer) => { %>
                     <option value="<%= manufacturer.id %>"><%= manufacturer.name %></option>
@@ -28,12 +28,12 @@
             <label for="odometer">Odometer: </label>
             <input type="number" name="odometer" id="odometer" required min="1" max="999999">
         </li>
-        <li>
+        <li class="textarea-li">
             <label for="description">Description: </label>
             <textarea id="description" name="description" rows="5" cols="33"></textarea>
         </li>
         <li>
-            <button type="submit">Submit</button>
+            <button class="buttonLink" type="submit">Submit</button>
         </li>
     </ul>
 </form>

@@ -8,8 +8,15 @@
         <span><button class="greyButton" id="closeModalBtn">Close <i class="fa-solid fa-xmark"></i></button></span>     
     </section>
     <header class="flex-row-centred-50pxh">
-        <h1><%= title %></h1>
+        <button id="openMenuBtn" class="greyButton"><i class="fa-solid fa-bars fa-2xl"></i></button><h1><%= title %></h1>
     </header>
+    <nav class="menu" style="display: none">
+        <span><button id="closeMenuBtn"><i class="fa-solid fa-xmark" title="Close side menu"></i></button></span>
+        <ul>
+            <a class="buttonLink" href="/new/manufacturer"><button>Add New Make</button></a>
+            <a class="buttonLink" href="/new/model"><button>Sell My Car</button></a>
+        </ul>
+    </nav>
     <main>
         <ul class="carsGrid">
             <% models.forEach((model) => { %>
@@ -40,13 +47,16 @@
     </main>
     <nav>
         <a class="buttonLink" href="/"><button>Return Home</button></a>
+        <div class="carCard-menu">
+            <% if (title !== 'All models') { %>
+                <form class="half-width" action="/delete/manufacturer?manufacturer=<%= title %>" method="post">
+                    <button class="buttonLink" type="submit" onclick="return checkPassword()">Delete Make</button>
+                </form>
+                <a onclick="return checkPassword()" class="buttonLink half-width" href="/update/manufacturer?name=<%= title %>"><button>Update Make</button></a>
+            <% } %>
+        </div>
     </nav>
-    <% if (title !== 'All models') { %>
-        <form action="/delete/manufacturer?manufacturer=<%= title %>" method="post">
-            <button type="submit" onclick="return confirm('Are you sure? Deleting the manufacturer will also delete all cars made by that manufacturer. Press OK to proceed or Cancel to abort.')">Delete Manufacturer</button>
-        </form>
-        <a href="/update/manufacturer?name=<%= title %>">Update Manufacturer</a>
-    <% } %>
+
     <%- include('../partials/footer') %>
     <script>
         const adminpw = "<%= adminpw %>";
@@ -54,6 +64,17 @@
         const closeModalBtn = document.querySelector("#closeModalBtn");
         const modal = document.querySelector("#detail-modal");
         const modalImg = document.querySelector("#modal-image");
+        const openMenuBtn = document.querySelector("#openMenuBtn");
+        const closeMenuButton = document.querySelector("#closeMenuBtn");
+        const menu = document.querySelector(".menu");
+
+        closeMenuButton.addEventListener('pointerdown', () => {
+            menu.style.display = "none";
+        });
+
+        openMenuBtn.addEventListener('pointerdown', () => {
+            menu.style.display = "flex";
+        });
 
         closeModalBtn.addEventListener('click', () => {
             modal.style.display = "none";
