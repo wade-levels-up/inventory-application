@@ -4,7 +4,7 @@
 <body>
     <section id="detail-modal">
         <img id="modal-image" src="" alt="" width="300px">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo, optio. Officiis explicabo adipisci dolor, a nobis ipsa magni minus modi debitis eum accusamus? Ab fugit pariatur consequatur harum eum magnam. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae sequi officiis suscipit laboriosam nemo soluta accusantium, facilis eos? Eos illum eius, commodi unde maxime aperiam consequatur laborum nihil officia nisi? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minus, non enim maxime dicta iusto nobis laborum, expedita distinctio ut eveniet deleniti odio! Ducimus excepturi nihil at aperiam commodi, velit facere!</p>
+        <p class="modal-desc"></p>
         <span><button class="greyButton" id="closeModalBtn">Close <i class="fa-solid fa-xmark"></i></button></span>     
     </section>
     <header class="flex-row-centred-50pxh">
@@ -26,7 +26,7 @@
                             <h2><%= model.make_name %> <%= model.model_name %></h2>
                             </div>
                         <div class="carCard-image-container">
-                            <img onclick="displayModalWithImage('<%= model.imgurl %>')" src="<%= model.imgurl %>" alt="<%= model.make_name %> <%= model.model_name %>" width="280px">
+                            <img onclick="displayModalWithImage('<%= model.imgurl %>', '<%= model.description %>')" src="<%= model.imgurl %>" alt="<%= model.make_name %> <%= model.model_name %>" width="280px">
                         </div>
                         <p><%= model.year %> model <%= model.make_name %> <%= model.model_name %></p>
                         <span class="carCard-info">
@@ -34,7 +34,7 @@
                             <div><i class="fa-solid fa-gauge" title="Kilometres on odometer"></i> <%= model.odometer %> <abbr title="kilometres">kms</abbr></div>
                         </span>
                         <div class="carCard-menu">
-                            <button class="buttonLink" onclick="displayModalWithImage('<%= model.imgurl %>')">Details</button>
+                            <button class="buttonLink" onclick="displayModalWithImage('<%= model.imgurl %>', '<%= model.description %>')">Details</button>
                             <form action="/delete/model?manufacturer=<%= title %>&id=<%= model.id %>" method="post">
                                 <button class="buttonLink" type="submit" onclick="return checkPassword()">Delete</button>
                             </form>
@@ -67,6 +67,7 @@
         const closeModalBtn = document.querySelector("#closeModalBtn");
         const modal = document.querySelector("#detail-modal");
         const modalImg = document.querySelector("#modal-image");
+        const modalDesc = document.querySelector(".modal-desc");
         const openMenuBtn = document.querySelector("#openMenuBtn");
         const closeMenuButton = document.querySelector("#closeMenuBtn");
         const menu = document.querySelector(".menu");
@@ -89,8 +90,9 @@
             document.body.style.overflow = "auto";
         });
 
-        function displayModalWithImage(img) {
+        function displayModalWithImage(img, details) {
             modalImg.src = img;
+            modalDesc.innerText = details;
             modal.style.display = "flex";
             modal.focus(); // Set focus on the modal
             document.body.style.overflow = "hidden"; // Disable scrolling on the body

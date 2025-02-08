@@ -86,7 +86,6 @@ const modelValidator = [
 
 const getUpdateModel = asyncHandler(async (req, res) => {
   try {
-    console.log(req.query.prevpage);
     const allManufacturers = await db.getAllManufacturers();
     const model = await db.getModelById(req.query.modelId);
     res.render("pages/update", {
@@ -113,8 +112,22 @@ const getUpdateManufacturer = asyncHandler(async (req, res) => {
 });
 
 const updateModelById = [
+  modelValidator,
   asyncHandler(async (req, res) => {
     try {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        const allManufacturers = await db.getAllManufacturers();
+        const model = await db.getModelById(req.query.id);
+        return res.render("pages/update", {
+          title: "Update Model",
+          manufacturers: allManufacturers,
+          model: model[0],
+          prevpage: req.query.prevpage,
+          errors: errors.array(),
+        });
+      }
+
       await db.updateModelById(req.query.id, req.body);
       if (req.query.prevpage === "All models") {
         const allModels = await db.getAllModels();
@@ -142,14 +155,8 @@ const updateManufacturerByName = [
           errors: errors.array(),
         });
       }
-
       await db.updateManufacturerByName(req.query.name, req.body.name);
-      const models = await db.getModelsByManufacturer(req.body.name);
-      res.render("pages/category", {
-        title: capitalizeString(req.body.name),
-        models: models,
-        adminpw,
-      });
+      res.redirect(`/category/${req.body.name}`);
     } catch (error) {
       throw new Error(`Failed to update manufacturer: ${error}`);
     }

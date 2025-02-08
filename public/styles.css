@@ -339,6 +339,10 @@ details {
     max-width: 1200px;
 }
 
+.modal-desc {
+    line-height: 1.5rem;
+}
+
 /* Related to forms */
 
 form {
