@@ -38,11 +38,14 @@
                             <form action="/delete/model?manufacturer=<%= title %>&id=<%= model.id %>" method="post">
                                 <button class="buttonLink" type="submit" onclick="return checkPassword()">Delete</button>
                             </form>
-                            <a href="/update/model?modelId=<%= model.id %>"><button class="buttonLink">Update</button></a>
+                            <a href="/update/model?prevpage=<%= title %>&modelId=<%= model.id %>"><button class="buttonLink">Update</button></a>
                         </div>
                     </div>
                 </li>
             <% }); %>
+            <% if (models.length === 0) { %>
+                <h2>Looks like there are no cars of this make...</h2>
+            <% } %>
         </ul>
     </main>
     <nav>

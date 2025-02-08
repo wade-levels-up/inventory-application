@@ -86,12 +86,14 @@ const modelValidator = [
 
 const getUpdateModel = asyncHandler(async (req, res) => {
   try {
+    console.log(req.query.prevpage);
     const allManufacturers = await db.getAllManufacturers();
     const model = await db.getModelById(req.query.modelId);
     res.render("pages/update", {
       title: "Update Model",
       manufacturers: allManufacturers,
       model: model[0],
+      prevpage: req.query.prevpage,
     });
   } catch (error) {
     throw new Error(`Failed to update model: ${error}`);
@@ -114,7 +116,13 @@ const updateModelById = [
   asyncHandler(async (req, res) => {
     try {
       await db.updateModelById(req.query.id, req.body);
-      res.redirect("/");
+      if (req.query.prevpage === "All models") {
+        const allModels = await db.getAllModels();
+        res.redirect("/category/all");
+      } else {
+        const models = await db.getModelsByManufacturer(req.query.prevpage);
+        res.redirect(`/category/${req.query.prevpage}`);
+      }
     } catch (error) {
       throw new Error(`Failed to update model: ${error}`);
     }
