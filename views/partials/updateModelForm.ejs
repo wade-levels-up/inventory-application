@@ -4,7 +4,11 @@
             <label for="makeKey">Manufacturer: </label>
             <select name="makeKey" id="makeKey">
                 <% locals.manufacturers.forEach((manufacturer) => { %>
-                    <option value="<%= manufacturer.id %>"><%= manufacturer.name %></option>
+                    <% if ( manufacturer.id === locals.model.id ) { %>
+                        <option  selected value="<%= manufacturer.id %>"><%= manufacturer.name %></option>
+                    <% } else { %>
+                        <option value="<%= manufacturer.id %>"><%= manufacturer.name %></option>
+                    <% } %>
                 <% }) %>
             </select>
         </li>
