@@ -4,7 +4,7 @@
 <body>
     <div>
         <header class="flex-row-centred-50pxh">
-            <button id="openMenuBtn" class="greyButton"><i class="fa-solid fa-bars fa-2xl"></i></button><h1>autosales</h1>
+            <button id="openMenuBtn" class="greyButton"><i class="fa-solid fa-bars fa-2xl"></i></button><h1>Autosales</h1>
         </header>
         <section>
             <div class="banner-image"></div>
@@ -38,12 +38,26 @@
         const openMenuBtn = document.querySelector("#openMenuBtn");
         const closeMenuButton = document.querySelector("#closeMenuBtn");
         const menu = document.querySelector(".menu");
+        const bannerImage = document.querySelector('.banner-image');
 
-        closeMenuButton.addEventListener('pointerdown', () => {
+        function switchBannerImage() {
+            setInterval(() => {
+                bannerImage.style = "background: center / cover no-repeat url(tyler-clemmensen-d1Jum1vVLew-unsplash.jpg)"
+            }, 5000);
+            setInterval(() => {
+                bannerImage.style = "background: center / cover no-repeat url(tabea-schimpf-O7WzqmeYoqc-unsplash.jpg)"
+            }, 10000);
+        }
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            switchBannerImage();
+        })
+
+        closeMenuButton.addEventListener('click', () => {
             menu.style.display = "none";
         });
 
-        openMenuBtn.addEventListener('pointerdown', () => {
+        openMenuBtn.addEventListener('click', () => {
             menu.style.display = "flex";
         });
     </script>

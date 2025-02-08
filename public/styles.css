@@ -1,6 +1,15 @@
+@font-face {
+    font-family: 'autobus';
+    src: url('autobus-bold-webfont.woff2') format('woff2'),
+         url('autobus-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 :root {
-    font-size: 20px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 22px;
+    font-family: 'autobus', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
     --text-color-main: rgb(50, 50, 50);
     --text-color-secondary: rgb(245, 246, 255);
@@ -16,6 +25,21 @@
 
     --border-radius-8px: 8px;
 }
+
+@media (prefers-color-scheme: dark) {
+    :root {
+
+        --text-color-main: rgb(245, 246, 255);
+        --text-color-secondary: rgb(245, 246, 255);
+
+        --background-color-main: rgb(50, 50, 50);
+        --background-color-main-trans: rgba(50, 50, 50, 0.9);
+    }
+
+    .menu span button {
+        color: black;
+    }
+  }
 
 /* Base element styles */
 
@@ -34,7 +58,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-    font-weight: 300;
+    font-family: 'autobus';
+    font-size: 2.5rem;
+    max-width: 60%;
+    overflow-x: scroll;
 }
 
 h2, h3 {
@@ -159,6 +186,7 @@ nav button {
     height: 200px;
     background: center / cover no-repeat url("tabea-schimpf-O7WzqmeYoqc-unsplash.jpg");
     border-bottom: 3px solid var(--button-hover-color-1);
+    transition: background 2s ease;
 }
 
 main {
@@ -339,7 +367,7 @@ form ul {
 label {
     display: flex;
     align-items: center;
-    font-size: 16px;
+    font-size: 18px;
 }
 
 form ul input, select {
