@@ -40,12 +40,27 @@ VALUES
 
 async function main() {
   console.log("seeding");
-  const client = new Client({
-    connectionString: process.env.LOCAL_DB,
-  });
-  await client.connect();
-  await client.query(SQL);
-  await client.end();
+
+  const database = process.argv[2];
+
+  if (database === "local") {
+    const client = new Client({
+      connectionString: process.env.LOCAL_DB,
+    });
+    await client.connect();
+    await client.query(SQL);
+    await client.end();
+  }
+
+  if (database === "production") {
+    const client = new Client({
+      connectionString: process.env.DATABASE_PUBLIC_URL,
+    });
+    await client.connect();
+    await client.query(SQL);
+    await client.end();
+  }
+
   console.log("done");
 }
 
