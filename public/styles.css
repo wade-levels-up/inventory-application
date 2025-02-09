@@ -211,7 +211,7 @@ nav button {
 .banner-image {
     width: 100vw;
     height: calc(25vh + 5vw);
-    background-color: var(--background-color-main-trans);
+    background-color: black;
     background: bottom / cover no-repeat url("melih-karaahmet-fb-Yqt_f9DQ-unsplash.webp");
     border-bottom: 3px solid var(--button-hover-color-1);
     transition: background 500ms ease;
