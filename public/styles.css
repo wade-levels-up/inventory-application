@@ -29,6 +29,8 @@
     font-size: 22px;
     font-family: 'autobus', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
+    --theme: 'light';
+
     --text-color-main: rgb(50, 50, 50);
     --text-color-secondary: rgb(245, 246, 255);
 
@@ -46,6 +48,7 @@
 
 @media (prefers-color-scheme: dark) {
     :root {
+        --theme: 'dark';
 
         --text-color-main: rgb(245, 246, 255);
         --text-color-secondary: rgb(245, 246, 255);
@@ -169,8 +172,10 @@ body {
     background-color: var(--background-color-main-trans);
 }
 
-header .greyButton {
+header #openMenuBtn {
     position: absolute;
+    width: 2rem;
+    height: 2rem;
     left: 12px;
 }
 
@@ -267,12 +272,16 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.2rem;
+    gap: 10px;
     font-size: 0.7rem;
     padding: var(--padding-8px);
     border-top: 3px solid var(--button-hover-color-1);
     width: 100vw;
     background-color: var(--background-color-main-trans);
+}
+
+footer a {
+    color: var(--text-color-main);
 }
 
 /* Related to category */
