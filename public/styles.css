@@ -7,6 +7,24 @@
 
 }
 
+@keyframes slide-in {
+    from {
+        transform: translateX(-100vw);
+    }
+    to {
+        transform: translateX(0vw);
+    }
+}
+
+@keyframes slide-out {
+    from {
+        transform: translateX(0vw);
+    }
+    to {
+        transform: translateX(-100vw)
+    }
+}
+
 :root {
     font-size: 22px;
     font-family: 'autobus', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -15,7 +33,7 @@
     --text-color-secondary: rgb(245, 246, 255);
 
     --background-color-main: rgb(245, 246, 255);
-    --background-color-main-trans: rgba(245, 246, 255, 0.9);
+    --background-color-main-trans: rgba(245, 246, 255, 0.8);
     --background-color-modal: rgba(35, 37, 40, 0.8);
     --button-hover-color-1: rgb(196, 203, 211);
     --button-color-1: rgb(60, 93, 212);
@@ -33,7 +51,7 @@
         --text-color-secondary: rgb(245, 246, 255);
 
         --background-color-main: rgb(50, 50, 50);
-        --background-color-main-trans: rgba(50, 50, 50, 0.9);
+        --background-color-main-trans: rgba(50, 50, 50, 0.8);
     }
 
     .menu span button {
@@ -86,9 +104,9 @@ body {
     display: flex;
     align-items: center;
     flex-direction: column;
-    background-color: var(--background-color-main);
+    background: center / cover no-repeat url("katie-moum-l0GRQpXwgPk-unsplash.jpg");
+    background-color: var(--background-color-main-trans);
     color: var(--text-color-main);
-    gap: 1rem;
     position: relative;
 }
 
@@ -97,11 +115,15 @@ body {
     height: 100%;
     left: 0px;
     top: 0px;
-    width: 200px;
+    min-width: 200px;
+    max-width: 260px;
     padding: var(--padding-16px);
     background-color: var(--background-color-main-trans);
     z-index: 1;
     border-right: 1px solid var(--button-hover-color-1);
+    animation-name: slide-in;
+    animation-duration: 500ms;
+    animation-fill-mode: forwards;
 }
 
 .menu ul {
@@ -128,7 +150,7 @@ body {
 
 .flex-row-centred-50pxh {
     width: 100%;
-    background-color: var(--background-color-main);
+    background-color: var(--background-color-main-trans);
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -142,9 +164,9 @@ body {
 
 .greyButton {
     border: none;
-    padding: var(--padding-8px);
+    padding: 12px 8px;
     border-radius: var(--border-radius-8px);
-    background-color: var(--background-color-main);
+    background-color: var(--background-color-main-trans);
 }
 
 header .greyButton {
@@ -183,21 +205,33 @@ nav button {
 
 .banner-image {
     width: 100vw;
-    height: 200px;
-    background: center / cover no-repeat url("tabea-schimpf-O7WzqmeYoqc-unsplash.jpg");
+    height: calc(25vh + 5vw);
+    background: bottom / cover no-repeat url("melih-karaahmet-fb-Yqt_f9DQ-unsplash.webp");
     border-bottom: 3px solid var(--button-hover-color-1);
-    transition: background 2s ease;
+    transition: background 500ms ease;
+    position: relative;
+}
+
+.credit {
+    color: white;
+    font-size: 0.6rem;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: absolute;
+    right: 0px;
+    margin: 8px;
+    padding: 4px;
+    cursor: pointer;
 }
 
 main {
     width: 100vw;
-    max-width: 600px;
     display: flex;
     flex-direction: column;
     align-items: center;
     flex-grow: 1;
     gap: 1rem;
     padding: var(--padding-16px);
+    background-color: var(--background-color-main-trans);
 }
 
 nav {
@@ -215,6 +249,20 @@ main nav ul {
     gap: 1rem;
 }
 
+main nav ul li {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.returnHome {
+    display: flex;
+    justify-content: center;
+    padding: var(--padding-8px);
+    width: 100%;
+    background-color: var(--background-color-main-trans);
+}
+
 footer {
     display: flex;
     flex-direction: column;
@@ -224,6 +272,7 @@ footer {
     padding: var(--padding-8px);
     border-top: 3px solid var(--button-hover-color-1);
     width: 100vw;
+    background-color: var(--background-color-main-trans);
 }
 
 /* Related to category */

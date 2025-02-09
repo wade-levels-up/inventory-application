@@ -48,7 +48,7 @@
             <% } %>
         </ul>
     </main>
-    <nav>
+    <nav class="returnHome">
         <a class="buttonLink" href="/"><button>Return Home</button></a>
         <div class="carCard-menu">
             <% if (title !== 'All models') { %>
@@ -59,7 +59,6 @@
             <% } %>
         </div>
     </nav>
-
     <%- include('../partials/footer') %>
     <script>
         const adminpw = "<%= adminpw %>";
@@ -76,13 +75,16 @@
             menu.style.display = "none";
         });
 
-        openMenuBtn.addEventListener('click', () => {
-            menu.style.display = "flex";
+        closeMenuButton.addEventListener('click', () => {
+            menu.style = "animation-name: slide-out"
+            setTimeout(()=> {
+                menu.style.display = "none";
+            }, 500)
         });
 
-        closeModalBtn.addEventListener('click', () => {
-            modal.style.display = "none";
-            document.body.style.overflow = "auto";
+        openMenuBtn.addEventListener('click', () => {
+            menu.style = "animation-name: slide-in"
+            menu.style.display = "flex";
         });
 
         modal.addEventListener('click', () => {

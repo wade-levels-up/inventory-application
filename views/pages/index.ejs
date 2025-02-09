@@ -7,7 +7,9 @@
             <button id="openMenuBtn" class="greyButton"><i class="fa-solid fa-bars fa-2xl"></i></button><h1>Autosales</h1>
         </header>
         <section>
-            <div class="banner-image"></div>
+            <div class="banner-image">
+                <a class="credit" target="_blank" href="https://unsplash.com/@melihkrhmet?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Photo by: Melih Karaahmet</a>
+            </div>
         </section>
     </div>
     <nav class="menu" style="display: none">
@@ -39,25 +41,41 @@
         const closeMenuButton = document.querySelector("#closeMenuBtn");
         const menu = document.querySelector(".menu");
         const bannerImage = document.querySelector('.banner-image');
+        const credit = document.querySelector('.credit');
 
-        function switchBannerImage() {
+        const bannerImageArray = [
+            { file: 'melih-karaahmet-fb-Yqt_f9DQ-unsplash.webp', alignment: 'bottom', name: 'Melih Karaahmet', href: 'https://unsplash.com/@melihkrhmet?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash'},
+            { file: 'enq-1998-5ocEwIL3LNY-unsplash.webp', alignment: 'bottom', name: 'Enq 1998', href: 'https://unsplash.com/@enq_1998?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash'},
+            { file: 'tyler-clemmensen-d1Jum1vVLew-unsplash.webp', alignment: 'center', name: 'Tyler Clemmensen', href: 'https://unsplash.com/@tyler_clemmensen?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash'}
+        ]
+
+        function switchBannerImage(array) {
+            let index = 0;
+            const maxLength = array.length - 1;
             setInterval(() => {
-                bannerImage.style = "background: center / cover no-repeat url(tyler-clemmensen-d1Jum1vVLew-unsplash.jpg)"
-            }, 5000);
-            setInterval(() => {
-                bannerImage.style = "background: center / cover no-repeat url(tabea-schimpf-O7WzqmeYoqc-unsplash.jpg)"
-            }, 10000);
+                index += 1;
+                if ( index > maxLength ) {
+                    index = 0;
+                }
+                credit.innerHTML = `Photo by: ${array[index].name}`;
+                credit.href = array[index].href;
+                bannerImage.style = `background: ${array[index].alignment} / cover no-repeat url(${array[index].file})`
+            }, 8000);
         }
 
         document.addEventListener('DOMContentLoaded', (event) => {
-            switchBannerImage();
+            switchBannerImage(bannerImageArray);
         })
 
         closeMenuButton.addEventListener('click', () => {
-            menu.style.display = "none";
+            menu.style = "animation-name: slide-out"
+            setTimeout(()=> {
+                menu.style.display = "none";
+            }, 500)
         });
 
         openMenuBtn.addEventListener('click', () => {
+            menu.style = "animation-name: slide-in"
             menu.style.display = "flex";
         });
     </script>
